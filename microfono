@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+amixer -c 1 set Capture toggle
+input="/path/to/file/stateMic.txt"
+while IFS= read -r line
+do
+  if [[ $line -eq 0 ]]
+  then
+    notify-send "Hecho!" "Micrófono activado"
+    echo 1 > "/path/to/file/stateMic.txt"
+  else 
+    notify-send "Hecho!" "Micrófono desactivado"
+    echo 0 > "/path/to/file/stateMic.txt"
+  fi
+done < "$input"
